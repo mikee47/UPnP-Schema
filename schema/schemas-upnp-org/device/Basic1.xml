@@ -1,0 +1,23 @@
+<device xmlns="urn:schemas-upnp-org:device-1-0">
+	<deviceType>urn:schemas-upnp-org:device:Basic:1</deviceType>
+	<friendlyName>short user-friendly title</friendlyName>
+	<manufacturer>manufacturer name</manufacturer>
+	<manufacturerURL>URL to manufacturer site</manufacturerURL>
+	<modelDescription>long user-friendly title</modelDescription>
+	<modelName>model name</modelName>
+	<modelNumber>model number</modelNumber>
+	<modelURL>URL to model site</modelURL>
+	<serialNumber>manufacturer's serial number</serialNumber>
+	<UDN>uuid:UUID</UDN>
+	<UPC>Universal Product Code</UPC>
+	<iconList>
+		<icon>
+			<mimetype>image/format</mimetype>
+			<width>horizontal pixels</width>
+			<height>vertical pixels</height>
+			<depth>color depth</depth>
+			<url>URL to icon</url>
+		</icon>
+	</iconList>
+	<presentationURL>URL for presentation</presentationURL>
+</device>
