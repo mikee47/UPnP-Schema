@@ -41,26 +41,68 @@ const FlashString&amp; domain()
 <xsl:variable name="urnKind"><xsl:call-template name="urn-kind"/></xsl:variable>
 <xsl:variable name="controlClass"><xsl:call-template name="control-class"/></xsl:variable>
 namespace <xsl:value-of select="$urnKind"/> {
-DEFINE_FSTR_LOCAL(<xsl:value-of select="concat($controlClass, '_type')"/>, "<xsl:call-template name="urn-type"/>");
-IMPORT_FSTR_LOCAL(<xsl:value-of select="concat($controlClass, '_schema')"/>, "<xsl:value-of select="@schema"/>")
+namespace <xsl:value-of select="concat($controlClass, 'ClassInfo')"/> {
+DEFINE_FSTR_LOCAL(type_, "<xsl:call-template name="urn-type"/>");
 
-constexpr ObjectClass <xsl:call-template name="control-class"/>_class PROGMEM = {
-	&amp;domain_,
-	&amp;<xsl:value-of select="concat($controlClass, '_type')"/>,
-	&amp;<xsl:value-of select="concat($controlClass, '_schema')"/>,
-	<xsl:call-template name="urn-version"/>,
-	Urn::Kind::<xsl:call-template name="urn-kind"/>,
-	<xsl:value-of select="concat($controlClass, '::createObject')"/>
+<xsl:if test="$urnKind = 'service'">
+DEFINE_FSTR_LOCAL(serviceId_, "<xsl:value-of select="s:serviceId"/>");
+IMPORT_FSTR_LOCAL(<xsl:value-of select="concat($controlClass, 'Schema')"/>, "<xsl:value-of select="@schema"/>")
+constexpr ObjectClass::Service service_ PROGMEM = {
+	.serviceId = &amp;serviceId_,
+	.schema = &amp;<xsl:value-of select="concat($controlClass, 'Schema')"/>,
+};
+static_assert(std::is_pod&lt;decltype(service_)>::value, "ObjectClass::Service structure not POD");                                       
+</xsl:if>
+
+<xsl:if test="$urnKind = 'device'">
+DEFINE_FSTR_LOCAL(friendlyName_, "<xsl:value-of select="d:friendlyName"/>");
+DEFINE_FSTR_LOCAL(manufacturer_, "<xsl:value-of select="d:manufacturer"/>");
+DEFINE_FSTR_LOCAL(manufacturerURL_, "<xsl:value-of select="d:manufacturerURL"/>");
+DEFINE_FSTR_LOCAL(modelDescription_, "<xsl:value-of select="d:modelDescription"/>");
+DEFINE_FSTR_LOCAL(modelName_, "<xsl:value-of select="d:modelName"/>");
+DEFINE_FSTR_LOCAL(modelNumber_, "<xsl:value-of select="d:modelNumber"/>");
+DEFINE_FSTR_LOCAL(modelURL_, "<xsl:value-of select="d:modelURL"/>");
+DEFINE_FSTR_LOCAL(serialNumber_, "<xsl:value-of select="d:serialNumber"/>");
+DEFINE_FSTR_LOCAL(UDN_, "<xsl:value-of select="d:UDN"/>");
+constexpr ObjectClass::Device device_ PROGMEM = {
+	.friendlyName = &amp;friendlyName_,
+	.manufacturer = &amp;manufacturer_,
+	.manufacturerURL = &amp;manufacturerURL_,
+	.modelDescription = &amp;modelDescription_,
+	.modelName = &amp;modelName_,
+	.modelNumber = &amp;modelNumber_,
+	.modelURL = &amp;modelURL_,
+	.serialNumber = &amp;serialNumber_,
+	.UDN = &amp;UDN_,
+};
+</xsl:if>
+
+constexpr ObjectClass class_ PROGMEM = {
+	.kind_ = Urn::Kind::<xsl:value-of select="$urnKind"/>,
+	.version_ = <xsl:call-template name="urn-version"/>,
+	.domain_ = &amp;domain_,
+	.type_ = &amp;type_,
+	.createObject_ = <xsl:value-of select="concat($controlClass, '::createObject')"/>,
+	<xsl:if test="$urnKind = 'service'">
+	{.service_ = &amp;service_}
+	</xsl:if>
+	<xsl:if test="$urnKind = 'device'">
+	{.device_ = &amp;device_}
+	</xsl:if>
 };
 
-static_assert(std::is_pod&lt;decltype(<xsl:value-of select="concat($controlClass, '_class')"/>)>::value, "ObjectClass structure not POD");                                       
-} // namespace <xsl:call-template name="urn-kind"/>
+static_assert(std::is_pod&lt;decltype(class_)>::value, "ObjectClass structure not POD");                                       
+} // namespace <xsl:value-of select="concat($controlClass, 'ClassInfo')"/>
+
+const ObjectClass&amp; <xsl:value-of select="concat($controlClass, '::class_')"/> = <xsl:value-of select="concat($controlClass, 'ClassInfo')"/>::class_;
+
+} // namespace <xsl:value-of select="$urnKind"/>
 
 
-</xsl:for-each>)
+</xsl:for-each>
 
 DEFINE_FSTR_VECTOR_LOCAL(classes, ObjectClass,
-	<xsl:for-each select="s:scpd | d:device">&amp;<xsl:call-template name="urn-kind"/>::<xsl:call-template name="control-class"/>_class,
+	<xsl:for-each select="s:scpd | d:device">&amp;<xsl:call-template name="urn-kind"/>::<xsl:call-template name="control-class"/>ClassInfo::class_,
 	</xsl:for-each>)
 
 void registerClasses()

@@ -28,7 +28,7 @@ public:
 
 	const ObjectClass&amp; getClass() const override
 	{
-		return <xsl:value-of select="$controlClass"/>_class;
+		return <xsl:value-of select="$controlClass"/>::class_;
 	}
 
 	ErrorCode handleAction(Envelope&amp; env) override

@@ -14,16 +14,17 @@
 </xsl:for-each>
 
 <xsl:call-template name="namespace-open"/>
-extern const ObjectClass <xsl:value-of select="$controlClass"/>_class;
 
 class <xsl:value-of select="$controlClass"/>: public DeviceControl
 {
 public:
 	using DeviceControl::DeviceControl;
-	
+
+	static const ObjectClass&amp; class_;
+
 	const ObjectClass&amp; getClass() const override
 	{
-		return <xsl:value-of select="$controlClass"/>_class;
+		return class_;
 	}
 
 	static Object* createObject(DeviceControl* owner)
@@ -37,7 +38,7 @@ public:
 	<xsl:variable name="class"><xsl:call-template name="control-class-full"/></xsl:variable>
 	<xsl:value-of select="$class"/>* get<xsl:call-template name="control-name"/>()
 	{
-		auto service = getService(<xsl:value-of select="$class"/>_class.objectType());
+		auto service = getService(<xsl:value-of select="$class"/>::class_.objectType());
 		return reinterpret_cast&lt;<xsl:value-of select="$class"/>*>(service);
 	}
 	</xsl:for-each>
@@ -48,7 +49,7 @@ public:
 	<xsl:variable name="class"><xsl:call-template name="control-class-full"/></xsl:variable>
 	<xsl:value-of select="$class"/>* get<xsl:call-template name="control-name"/>()
 	{
-		auto device = getDevice(<xsl:value-of select="$class"/>_class.objectType());
+		auto device = getDevice(<xsl:value-of select="$class"/>::class_.objectType());
 		return reinterpret_cast&lt;<xsl:value-of select="$class"/>*>(device);
 	}
 	</xsl:for-each>

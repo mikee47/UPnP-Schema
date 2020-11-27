@@ -15,7 +15,6 @@
 <xsl:call-template name="file-control-hpp"/>
 <xsl:text/>#include &lt;Network/UPnP/ActionResult.h>
 <xsl:call-template name="namespace-open"/>
-extern const ObjectClass <xsl:value-of select="$controlClass"/>_class;
 
 class <xsl:value-of select="$controlClass"/>: public ServiceControl
 {
@@ -35,9 +34,11 @@ public:
 
 	using ServiceControl::ServiceControl;
 
+	static const ObjectClass&amp; class_;
+
 	const ObjectClass&amp; getClass() const override
 	{
-		return <xsl:value-of select="$controlClass"/>_class;
+		return class_;
 	}
 
 	static Object* createObject(DeviceControl* owner)
