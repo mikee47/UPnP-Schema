@@ -14,7 +14,7 @@
 <xsl:for-each select="s:actionList/s:action">
 
 <xsl:if test="s:argumentList/s:argument[s:direction='out']">
-size_t <xsl:value-of select="$controlClass"/>::<xsl:apply-templates select="." mode="name"/>::Result::printTo(Print&amp; p)
+size_t <xsl:value-of select="$controlClass"/>::<xsl:apply-templates select="." mode="name"/>::Response::printTo(Print&amp; p)
 {
 	size_t n{0};
 	<xsl:for-each select="s:argumentList/s:argument[s:direction='out']">
@@ -30,15 +30,13 @@ size_t <xsl:value-of select="$controlClass"/>::<xsl:apply-templates select="." m
 bool <xsl:value-of select="$controlClass"/>::<xsl:apply-templates select="." mode="method"/>
 {
 	<!-- Build request and send it, using a lambda wrapper for response handling -->
-	Envelope request(*this);
 	<xsl:variable name="action"><xsl:apply-templates select="." mode="name"/></xsl:variable>
-	request.createRequest(<xsl:value-of select="$action"/>::actionName);<xsl:text/>
+	ActionRequestControl request(*this, <xsl:value-of select="$action"/>::actionName);
 	<xsl:for-each select="s:argumentList/s:argument[s:direction='in']">
-	request.addArg(<xsl:value-of select="$action"/>::Arg::<xsl:call-template name="varname"/>, <xsl:call-template name="varname-cpp"/>);<xsl:text/>
+	request.setArg(<xsl:value-of select="$action"/>::Arg::<xsl:call-template name="varname"/>, <xsl:call-template name="varname-cpp"/>);<xsl:text/>
 	</xsl:for-each>
-	return sendRequest(request, [callback](UPnP::Envelope&amp; response) {
-		<xsl:value-of select="$action"/>::Result result(response);
-		callback(result);
+	return request.send([callback](ActionResponse response) {
+		callback(response);
 	});
 }
 </xsl:for-each>

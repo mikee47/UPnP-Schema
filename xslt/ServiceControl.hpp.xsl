@@ -13,7 +13,6 @@
 <xsl:template match="s:scpd">
 <xsl:variable name="controlClass"><xsl:call-template name="control-class"/></xsl:variable>
 <xsl:call-template name="file-control-hpp"/>
-<xsl:text/>#include &lt;Network/UPnP/ActionResult.h>
 <xsl:call-template name="namespace-open"/>
 
 class <xsl:value-of select="$controlClass"/>: public ServiceControl
@@ -52,7 +51,7 @@ public:
 </xsl:template>
 
 <xsl:template match="s:action">
-	<!-- Declare a struct to contain result arguments, with an appropriate callback delegate type -->
+	<!-- Declare a struct to contain response arguments, with an appropriate callback delegate type -->
 	/**
 	 * @brief Action: <xsl:value-of select="s:name"/>
 	 * @{
@@ -64,25 +63,26 @@ public:
 			DEFINE_FSTR_LOCAL(<xsl:call-template name="varname"/>, "<xsl:value-of select="s:name"/>")<xsl:text/>
 			</xsl:for-each>
 		};
-		class Result: public UPnP::ActionResult
+		class Response: public UPnP::ActionResponse
 		{
 		public:
-			using ActionResult::ActionResult;
+			Response(const ActionRequest&amp; request): ActionResponse(request) {}
+			Response(const ActionResponse&amp; response): ActionResponse(response) {}
 
 			<xsl:for-each select="s:argumentList/s:argument[s:direction='out']">
-			<xsl:apply-templates select="." mode="type"/> get<xsl:call-template name="varname"/>()
+			<xsl:apply-templates select="." mode="type"/> get<xsl:call-template name="varname"/>() const
 			{
-				return ActionResult::getArg&lt;<xsl:apply-templates select="." mode="type"/>>(Arg::<xsl:call-template name="varname"/>);
+				return ActionResponse::getArg&lt;<xsl:apply-templates select="." mode="type"/>>(Arg::<xsl:call-template name="varname"/>);
 			}
 
-			void set<xsl:call-template name="varname"/>(<xsl:apply-templates select="." mode="type"><xsl:with-param name="const" select="1"/></xsl:apply-templates> value)
+			void set<xsl:call-template name="varname"/>(<xsl:apply-templates select="." mode="type"><xsl:with-param name="const" select="1"/></xsl:apply-templates> value) const
 			{
-				ActionResult::setArg(Arg::<xsl:call-template name="varname"/>, value);
+				ActionResponse::setArg(Arg::<xsl:call-template name="varname"/>, value);
 			}
 			</xsl:for-each>
 			size_t printTo(Print&amp; p);
 		};
-		using Callback = Delegate&lt;void(Result result)>;<xsl:text/>
+		using Callback = Delegate&lt;void(Response response)>;<xsl:text/>
 	};
 
 	bool <xsl:apply-templates select="." mode="method"/>;
