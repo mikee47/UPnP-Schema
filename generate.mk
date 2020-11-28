@@ -22,6 +22,10 @@ UPNP_INCFILES += $3$(1:.xml=Template.h)
 $3$(1:.xml=Template.h): $2$1
 	$(call upnp_generate_template,Template)
 
+UPNP_INCFILES += $3$(1:.xml=Host.h)
+$3$(1:.xml=Host.h): $2$1
+	$(call upnp_generate_template,Host)
+
 UPNP_INCFILES += $3$(1:.xml=.h)
 $3$(1:.xml=.h): $2$1
 	$(call upnp_generate_template,Control.hpp)

@@ -51,6 +51,8 @@ if __name__ == "__main__":
 #             original_tree.write_c14n(f)
     else:
         original_tree = etree.parse(srcfile)
+        t = original_tree.getroot()
+        t.attrib['schema'] = srcfile
 
     xslt_tree = etree.parse(args.transform)
     xslt = etree.XSLT(xslt_tree)

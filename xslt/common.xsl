@@ -44,6 +44,20 @@
 #include &lt;Network/UPnP/Device.h>
 </xsl:template>
 
+ <!-- Header file opening for Host classes -->
+<xsl:template name="file-host">
+/**
+ * @brief <xsl:value-of select="d:deviceType | s:serviceType"/>
+ *
+ * @note This file is auto-generated. Copy to your project and edit as required.
+ *
+ */
+
+#pragma once
+
+#include &lt;Network/UPnP/Device.h>
+</xsl:template>
+
 <!-- Source file comment -->
 <xsl:template name="file-cpp">
 /**
@@ -152,6 +166,7 @@ namespace <xsl:call-template name="urn-kind"/> {
 
 <!-- Method declaration for service action -->
 <xsl:template match="s:action" mode="method">
+	<xsl:param name="result" select="'Callback callback'"/>
 	<xsl:variable name="name"><xsl:apply-templates select="." mode="name"/></xsl:variable>
 	<xsl:value-of select="concat(translate(substring($name,1,1), $vUpper, $vLower), substring($name, 2))"/>(
 		<xsl:for-each select="s:argumentList/s:argument[s:direction='in']">
@@ -160,7 +175,7 @@ namespace <xsl:call-template name="urn-kind"/> {
 		</xsl:apply-templates>
 		<xsl:text> </xsl:text><xsl:call-template name="varname-cpp"/>,
 		</xsl:for-each>
-		<xsl:value-of select="$name"/>::Callback callback)<xsl:text/>
+		<xsl:value-of select="concat($name, '::', $result)"/>)<xsl:text/>
 </xsl:template>
 
 <!-- Map an action variable type onto the appropriate C++ one -->
