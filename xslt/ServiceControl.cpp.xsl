@@ -35,9 +35,7 @@ bool <xsl:value-of select="$controlClass"/>::<xsl:apply-templates select="." mod
 	<xsl:for-each select="s:argumentList/s:argument[s:direction='in']">
 	request.setArg(<xsl:value-of select="$action"/>::Arg::<xsl:call-template name="varname"/>, <xsl:call-template name="varname-cpp"/>);<xsl:text/>
 	</xsl:for-each>
-	return request.send([callback](ActionResponse response) {
-		callback(response);
-	});
+	return request.send(callback ? [callback](ActionResponse response) { callback(response); } : ActionRequestControl::Callback());
 }
 </xsl:for-each>
 
