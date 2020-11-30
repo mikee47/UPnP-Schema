@@ -9,22 +9,6 @@
 	<modelURL>http://www.gupnp.org</modelURL>
 	<serialNumber>0.1</serialNumber>
 	<UDN>uuid:23b0189c-549f-11dc-a7c7-001641597c49</UDN>
-	<iconList>
-		<icon>
-			<mimetype>image/png</mimetype>
-			<width>256</width>
-			<height>256</height>
-			<depth>32</depth>
-			<url>/pixmaps/network-light-256x256.png</url>
-		</icon>
-		<icon>
-			<mimetype>image/png</mimetype>
-			<width>22</width>
-			<height>22</height>
-			<depth>32</depth>
-			<url>/pixmaps/network-light-22x22.png</url>
-		</icon>
-	</iconList>
 	<serviceList>
 		<service>
 			<serviceType>urn:schemas-upnp-org:service:SwitchPower:1</serviceType>

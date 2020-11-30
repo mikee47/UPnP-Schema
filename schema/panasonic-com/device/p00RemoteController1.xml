@@ -14,36 +14,6 @@
 	<X_KEY_TYPE>PAL-21,PAL-11,PAL-1</X_KEY_TYPE>
 	<X_PAD_TYPE/>
 	<X_NRCCAP>VR_DMR,VR_DMS,VR_VECTOR,VR_BROWSER,VR_LAUNCH,VR_MEDIADMS,VR_LVDMS,VR_UPDMS,VR_TUNER1,VR_TVMUTE,VR_MES,VR_UPBROWSER</X_NRCCAP>
-	<iconList>
-		<icon>
-			<mimetype>image/png</mimetype>
-			<width>48</width>
-			<height>48</height>
-			<depth>24</depth>
-			<url>/nrc/dlna_icon_48.png</url>
-		</icon>
-		<icon>
-			<mimetype>image/png</mimetype>
-			<width>120</width>
-			<height>120</height>
-			<depth>24</depth>
-			<url>/nrc/dlna_icon_120.png</url>
-		</icon>
-		<icon>
-			<mimetype>image/jpeg</mimetype>
-			<width>48</width>
-			<height>48</height>
-			<depth>24</depth>
-			<url>/nrc/dlna_icon_48.jpg</url>
-		</icon>
-		<icon>
-			<mimetype>image/jpeg</mimetype>
-			<width>120</width>
-			<height>120</height>
-			<depth>24</depth>
-			<url>/nrc/dlna_icon_120.jpg</url>
-		</icon>
-	</iconList>
 	<serviceList>
 		<service>
 			<serviceType>urn:panasonic-com:service:p00NetworkControl:1</serviceType>

@@ -4,15 +4,6 @@
 	<manufacturer>Google Inc.</manufacturer>
 	<modelName>Eureka Dongle</modelName>
 	<UDN>uuid:3e21b953-ec39-083d-4381-5ade69112265</UDN>
-	<iconList>
-		<icon>
-			<mimetype>image/png</mimetype>
-			<width>98</width>
-			<height>55</height>
-			<depth>32</depth>
-			<url>/setup/icon.png</url>
-		</icon>
-	</iconList>
 	<serviceList>
 		<service>
 			<serviceType>urn:dial-multiscreen-org:service:dial:1</serviceType>
