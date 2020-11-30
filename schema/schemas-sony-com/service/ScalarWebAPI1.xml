@@ -10,5 +10,6 @@
 		</stateVariable>
 	</serviceStateTable>
 	<serviceType>urn:schemas-sony-com:service:ScalarWebAPI:1</serviceType>
+	<serviceId>urn:schemas-sony-com:serviceId:ScalarWebAPI</serviceId>
 </scpd>
 

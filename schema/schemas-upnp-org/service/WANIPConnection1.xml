@@ -366,5 +366,6 @@
 		</stateVariable>
 	</serviceStateTable>
 	<serviceType>urn:schemas-upnp-org:service:WANIPConnection:1</serviceType>
+	<serviceId>urn:upnp-org:serviceId:WANIPConn1</serviceId>
 </scpd>
 

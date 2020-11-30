@@ -383,5 +383,6 @@
 		</stateVariable>
 	</serviceStateTable>
 	<serviceType>urn:schemas-upnp-org:service:RenderingControl:1</serviceType>
+	<serviceId>urn:upnp-org:serviceId:RenderingControl</serviceId>
 </scpd>
 

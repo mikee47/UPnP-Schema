@@ -509,5 +509,6 @@
 		</stateVariable>
 	</serviceStateTable>
 	<serviceType>urn:schemas-upnp-org:service:AVTransport:1</serviceType>
+	<serviceId>urn:upnp-org:serviceId:AVTransport</serviceId>
 </scpd>
 

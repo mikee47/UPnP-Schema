@@ -129,5 +129,6 @@
 		</stateVariable>
 	</serviceStateTable>
 	<serviceType>urn:schemas-upnp-org:service:ConnectionManager:1</serviceType>
+	<serviceId>urn:upnp-org:serviceId:ConnectionManager</serviceId>
 </scpd>
 

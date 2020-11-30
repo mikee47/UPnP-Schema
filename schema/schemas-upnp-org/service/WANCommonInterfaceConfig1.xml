@@ -131,5 +131,6 @@
 		</stateVariable>
 	</serviceStateTable>
 	<serviceType>urn:schemas-upnp-org:service:WANCommonInterfaceConfig:1</serviceType>
+	<serviceId>urn:upnp-org:serviceId:WANCommonIFC1</serviceId>
 </scpd>
 

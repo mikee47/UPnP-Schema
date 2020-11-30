@@ -672,5 +672,6 @@
 		</stateVariable>
 	</serviceStateTable>
 	<serviceType>urn:schemas-sony-com:service:Group:1</serviceType>
+	<serviceId>urn:schemas-sony-com:serviceId:Group</serviceId>
 </scpd>
 

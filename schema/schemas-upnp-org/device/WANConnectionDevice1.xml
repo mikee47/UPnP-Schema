@@ -1,0 +1,21 @@
+<device xmlns="urn:schemas-upnp-org:device-1-0">
+	<deviceType>urn:schemas-upnp-org:device:WANConnectionDevice:1</deviceType>
+	<friendlyName>Archer_VR900</friendlyName>
+	<manufacturer>TP-LINK</manufacturer>
+	<manufacturerURL>http://www.tp-link.com</manufacturerURL>
+	<modelDescription>AC1900 Wireless Gigabit VDSL/ADSL Modem Router</modelDescription>
+	<modelName>Archer_VR900</modelName>
+	<modelNumber>1.0</modelNumber>
+	<modelURL>http://192.168.1.254:8080/</modelURL>
+	<serialNumber>1.0</serialNumber>
+	<UDN>uuid:9f0865b3-f5da-4ad5-85b7-7404637fdf39</UDN>
+	<serviceList>
+		<service>
+			<serviceType>urn:schemas-upnp-org:service:WANIPConnection:1</serviceType>
+			<serviceId>urn:upnp-org:serviceId:WANIPConn1</serviceId>
+			<controlURL>/upnp/control/WANIPConn1</controlURL>
+			<eventSubURL>/upnp/control/WANIPConn1</eventSubURL>
+			<SCPDURL>/gateconnSCPD.xml</SCPDURL>
+		</service>
+	</serviceList>
+</device>

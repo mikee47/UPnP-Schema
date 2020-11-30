@@ -1,0 +1,8 @@
+<scpd xmlns="urn:schemas-upnp-org:service-1-0">
+	<specVersion>
+		<major>1</major>
+		<minor>0</minor>
+	</specVersion>
+	<serviceType>urn:dial-multiscreen-org:service:dial:1</serviceType>
+	<serviceId>urn:dial-multiscreen-org:serviceId:dial</serviceId>
+</scpd>

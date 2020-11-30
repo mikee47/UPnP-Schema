@@ -12,6 +12,9 @@
 <xsl:for-each select="d:serviceList/d:service">
 <xsl:text/>#include &lt;Network/UPnP/<xsl:call-template name="file-path"/>.h&gt;
 </xsl:for-each>
+<xsl:for-each select="d:deviceList/d:device">
+<xsl:text/>#include &lt;Network/UPnP/<xsl:call-template name="file-path"/>.h&gt;
+</xsl:for-each>
 
 <xsl:call-template name="namespace-open"/>
 

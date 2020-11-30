@@ -70,5 +70,6 @@
 		</stateVariable>
 	</serviceStateTable>
 	<serviceType>urn:microsoft.com:service:X_MS_MediaReceiverRegistrar:1</serviceType>
+	<serviceId>urn:microsoft.com:serviceId:X_MS_MediaReceiverRegistrar</serviceId>
 </scpd>
 
