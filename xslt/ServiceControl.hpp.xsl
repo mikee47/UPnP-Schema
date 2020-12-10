@@ -33,7 +33,7 @@ public:
 
 	using ServiceControl::ServiceControl;
 
-	static const ObjectClass&amp; class_;
+	static const ObjectClass class_;
 
 	const ObjectClass&amp; getClass() const override
 	{

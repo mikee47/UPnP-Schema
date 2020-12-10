@@ -77,24 +77,23 @@ constexpr ObjectClass::Device device_ PROGMEM = {
 };
 </xsl:if>
 
-constexpr ObjectClass class_ PROGMEM = {
+} // namespace <xsl:value-of select="concat($controlClass, 'ClassInfo')"/>
+
+constexpr ObjectClass <xsl:value-of select="concat($controlClass, '::class_')"/> PROGMEM = {
 	.kind_ = Urn::Kind::<xsl:value-of select="$urnKind"/>,
 	.version_ = <xsl:call-template name="urn-version"/>,
 	.domain_ = &amp;domain_,
-	.type_ = &amp;type_,
+	.type_ = &amp;<xsl:value-of select="concat($controlClass, 'ClassInfo')"/>::type_,
 	.createObject_ = <xsl:value-of select="concat($controlClass, '::createObject')"/>,
 	<xsl:if test="$urnKind = 'service'">
-	{.service_ = &amp;service_}
+	{.service_ = &amp;<xsl:value-of select="concat($controlClass, 'ClassInfo')"/>::service_}
 	</xsl:if>
 	<xsl:if test="$urnKind = 'device'">
-	{.device_ = &amp;device_}
+	{.device_ = &amp;<xsl:value-of select="concat($controlClass, 'ClassInfo')"/>::device_}
 	</xsl:if>
 };
 
-static_assert(std::is_pod&lt;decltype(class_)>::value, "ObjectClass structure not POD");                                       
-} // namespace <xsl:value-of select="concat($controlClass, 'ClassInfo')"/>
-
-const ObjectClass&amp; <xsl:value-of select="concat($controlClass, '::class_')"/> = <xsl:value-of select="concat($controlClass, 'ClassInfo')"/>::class_;
+static_assert(std::is_pod&lt;decltype(<xsl:value-of select="concat($controlClass, '::class_')"/>)>::value, "ObjectClass structure not POD");                                       
 
 } // namespace <xsl:value-of select="$urnKind"/>
 
@@ -102,7 +101,7 @@ const ObjectClass&amp; <xsl:value-of select="concat($controlClass, '::class_')"/
 </xsl:for-each>
 
 DEFINE_FSTR_VECTOR_LOCAL(classes, ObjectClass,
-	<xsl:for-each select="s:scpd | d:device">&amp;<xsl:call-template name="urn-kind"/>::<xsl:call-template name="control-class"/>ClassInfo::class_,
+	<xsl:for-each select="s:scpd | d:device">&amp;<xsl:call-template name="urn-kind"/>::<xsl:call-template name="control-class"/>::class_,
 	</xsl:for-each>)
 
 void registerClasses()

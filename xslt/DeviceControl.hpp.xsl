@@ -23,7 +23,7 @@ class <xsl:value-of select="$controlClass"/>: public DeviceControl
 public:
 	using DeviceControl::DeviceControl;
 
-	static const ObjectClass&amp; class_;
+	static const ObjectClass class_;
 
 	const ObjectClass&amp; getClass() const override
 	{
