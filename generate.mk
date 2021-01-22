@@ -1,7 +1,7 @@
 include $(SMING_HOME)/build.mk
 include $(UPNP_SCHEMA_PATH)/common.mk
 
-UPNP_GENERATE := $(UPNP_SCHEMA_PATH)/tools/gen.py
+UPNP_GENERATE := $(PYTHON) $(UPNP_SCHEMA_PATH)/tools/gen.py
 UPNP_XSLT := $(UPNP_SCHEMA_PATH)/xslt
 
 # Generate header or source for a device or service schema
