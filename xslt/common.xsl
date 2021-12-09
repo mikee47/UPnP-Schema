@@ -20,7 +20,7 @@
  * To customise, create a new class and inherit from `<xsl:call-template name="control-class"/>`.
  *
  * If any new member variables or virtual methods are introduced, you will also need to
- * overide `<xsl:call-template name="control-class"/>::Class`.
+ * override `<xsl:call-template name="control-class"/>::Class`.
  *  
  */
 
