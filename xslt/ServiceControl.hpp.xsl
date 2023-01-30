@@ -80,7 +80,7 @@ public:
 				ActionResponse::setArg(Arg::<xsl:call-template name="varname"/>, value);
 			}
 			</xsl:for-each>
-			size_t printTo(Print&amp; p);
+			size_t printTo(Print&amp; p) const;
 		};
 		using Callback = Delegate&lt;void(Response response)>;<xsl:text/>
 	};

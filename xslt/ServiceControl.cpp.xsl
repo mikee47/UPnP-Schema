@@ -14,7 +14,7 @@
 <xsl:for-each select="s:actionList/s:action">
 
 <xsl:if test="s:argumentList/s:argument[s:direction='out']">
-size_t <xsl:value-of select="$controlClass"/>::<xsl:apply-templates select="." mode="name"/>::Response::printTo(Print&amp; p)
+size_t <xsl:value-of select="$controlClass"/>::<xsl:apply-templates select="." mode="name"/>::Response::printTo(Print&amp; p) const
 {
 	size_t n{0};
 	<xsl:for-each select="s:argumentList/s:argument[s:direction='out']">
