@@ -32,6 +32,9 @@ public:
 	</xsl:if>
 
 	using ServiceControl::ServiceControl;
+	// Ensure virtual methods don't get hidden
+	using ServiceControl::next;
+	using ServiceControl::search;
 
 	static const ObjectClass class_;
 
