@@ -86,10 +86,10 @@ constexpr ObjectClass <xsl:value-of select="concat($controlClass, '::class_')"/>
 	.type_ = &amp;<xsl:value-of select="concat($controlClass, 'ClassInfo')"/>::type_,
 	.createObject_ = <xsl:value-of select="concat($controlClass, '::createObject')"/>,
 	<xsl:if test="$urnKind = 'service'">
-	{.service_ = &amp;<xsl:value-of select="concat($controlClass, 'ClassInfo')"/>::service_}
+	.opt = {.service_ = &amp;<xsl:value-of select="concat($controlClass, 'ClassInfo')"/>::service_}
 	</xsl:if>
 	<xsl:if test="$urnKind = 'device'">
-	{.device_ = &amp;<xsl:value-of select="concat($controlClass, 'ClassInfo')"/>::device_}
+	.opt = {.device_ = &amp;<xsl:value-of select="concat($controlClass, 'ClassInfo')"/>::device_}
 	</xsl:if>
 };
 
