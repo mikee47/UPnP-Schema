@@ -51,7 +51,7 @@ constexpr ObjectClass::Service service_ PROGMEM = {
 	.serviceId = &amp;serviceId_,
 	.schema = &amp;<xsl:value-of select="concat($controlClass, 'Schema')"/>,
 };
-static_assert(std::is_pod&lt;decltype(service_)>::value, "ObjectClass::Service structure not POD");                                       
+static_assert(std::is_standard_layout&lt;decltype(service_)>::value, "ObjectClass::Service structure not standard layout");                                       
 </xsl:if>
 
 <xsl:if test="$urnKind = 'device'">
@@ -93,7 +93,7 @@ constexpr ObjectClass <xsl:value-of select="concat($controlClass, '::class_')"/>
 	</xsl:if>
 };
 
-static_assert(std::is_pod&lt;decltype(<xsl:value-of select="concat($controlClass, '::class_')"/>)>::value, "ObjectClass structure not POD");                                       
+static_assert(std::is_standard_layout&lt;decltype(<xsl:value-of select="concat($controlClass, '::class_')"/>)>::value, "ObjectClass structure not standard layout");                                       
 
 } // namespace <xsl:value-of select="$urnKind"/>
 
